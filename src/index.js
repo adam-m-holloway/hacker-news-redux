@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './components/App';
 import store from './store';
-import { getReadableStories } from './selectors/story';
-import { STORY_ARCHIVE } from './constants/actionTypes';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 const render = () => {
   ReactDOM.render(
-    <App
-      stories={getReadableStories(store.getState())}
-      onArchive={id => store.dispatch({ type: STORY_ARCHIVE, id })}
-    />,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.getElementById('root')
   );
 };
